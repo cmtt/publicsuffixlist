@@ -36,6 +36,7 @@ request.on('response', function (response) {
 	} else {
 		console.log('You need to download effective_tld_names.dat from http://publicsuffix.org to ' + tldFileName);
 		throw new Error ('Received ' + response.statusCode.toString() + ' instead of 200.');
+	}
 });
 
 if (!path.existsSync(tldFileName)) request.end();

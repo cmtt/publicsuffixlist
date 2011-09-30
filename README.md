@@ -2,7 +2,7 @@ PublicSuffixList
 ================
 
 This module makes use of the [Public Suffix List](http://www.publicsuffix.org)
-used in modern browsers like Google Chrome, Mozilla Firefox in Opera for
+used in modern browsers like Google Chrome, Mozilla Firefox and Opera for
 validating domain names.
 
 ## Installation
@@ -56,3 +56,8 @@ Credits
 
 * [Simone Carletti](http://www.simonecarletti.com/code/public_suffix_service/)
 * domainname-parser.googlecode.com
+
+Licence
+-------
+
+MIT Licence.

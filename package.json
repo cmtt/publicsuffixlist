@@ -6,7 +6,7 @@
 
   , "scripts" : {
       "preinstall" : "node download_list.js"
-      , "preuninstall" : "rm effective_tld_names.dat"
+      , "preuninstall" : "rm -f effective_tld_names.dat"
     }
 
   , "main" : "./index.js"

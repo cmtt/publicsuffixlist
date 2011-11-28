@@ -44,7 +44,6 @@ Tests are included in the test/ directory.
 
 + Improve domain validation
 + return results as new objects instead of pointers 
-+ remove dependencies on underscore.js and underscore.string
 
 Further reading
 ---------------

@@ -1,4 +1,4 @@
-var psl = require('../');
+var psl = require('../index.js');
 var assert = require('assert');
 var domain = null;
 
@@ -218,7 +218,6 @@ assert.equal(domain,null);
 assert.equal(psl.subdomain,null);
 assert.equal(psl.domain,null);
 assert.equal(psl.tld,null);
-
 
 domain = psl.parse('test.om');
 assert.equal(domain,null);

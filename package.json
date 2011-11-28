@@ -1,12 +1,11 @@
 {
-
   "name" : "publicsuffixlist",
 
-  "version" : "0.1.1"
+  "version" : "0.1.2"
 
   , "scripts" : {
       "preinstall" : "node download_list.js"
-      , "preuninstall" : "rm -f effective_tld_names.dat"
+      , "preuninstall" : "node delete_list.js"
     }
 
   , "main" : "./index.js"

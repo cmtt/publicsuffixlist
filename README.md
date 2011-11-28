@@ -7,12 +7,12 @@ validating domain names.
 
 ## Installation
 
-The PSL module can be installed via npm or manually. underscore.js and its
-extension underscore.string are currently required as dependancies.
+The PSL module can be installed via npm or manually.
 
 A current copy of the Public Suffix List will be downloaded when npm is used. 
-After manual installation, the download_list.js script should be started to
-download a current copy of the effective_tld_names.dat from publicsuffix.org.
+
+After a manual installation, the download_list.js script should be started in
+order to download a current copy of the list from publicsuffix.org.
 
 ## Usage
 
@@ -56,7 +56,7 @@ Credits
 * [Simone Carletti](http://www.simonecarletti.com/code/public_suffix_service/)
 * domainname-parser.googlecode.com
 
-Licence
+License
 -------
 
-MIT Licence.
+MIT License.

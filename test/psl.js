@@ -1,4 +1,4 @@
-var psl = require('publicsuffixlist');
+var psl = require('../');
 var assert = require('assert');
 var domain = null;
 

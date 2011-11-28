@@ -1,18 +1,24 @@
+// rtrim taken from Underscore.string, (c) 2011 Esa-Matti Suurone under MIT Licence
+// https://github.com/epeli/underscore.string
+
+var rtrim = function(str, characters){
+	characters = characters.replace(/([-.*+?^${}()|[\]\/\\])/g, '\\$1');
+	return str.replace(new RegExp('[' + characters + ']+$', 'g'), '');
+}
+
 var path = require('path');
 var fs = require('fs');
 
-var _ = require('underscore'); var _s = require('underscore.string'); _.mixin(require('underscore.string'));
-
 var tldFileName = path.join(__dirname ,'effective_tld_names.dat');
-var ruleTypes = ['exception','wildcard','rule'];
 
 if (path.existsSync(tldFileName)) {
 	var tldFile = fs.readFileSync(tldFileName, 'utf8');
 	var tldRules = tldFile.split('\n');
+	delete tldFile;
 	var rules  = {};
-	
 	tldRules.forEach(function(rule) {
-		if (rule.substr(0, 2) !== '//' && _.trim(rule).length > 0) {
+		rule = rule.trim();
+		if (rule.substr(0, 2) !== '//' && rule.length > 0) {
 			switch (rule.charAt(0)) {
 				case '!':
 					var type = 'exception';
@@ -28,8 +34,6 @@ if (path.existsSync(tldFileName)) {
 			rules[type].push(rule);
 		}
 	});
-
-	delete tldFile;
 	delete tldRules;
 } else {
 	throw new Error(tldFileName + ' not found');
@@ -86,7 +90,7 @@ function PublicSuffixList () {
 		validate : function(domainString) {
 			self.parse(domainString);
 			if (self.domain === null) return false;
-			else return true;
+			return true;
 		}
 	}
 	self.reset();
@@ -94,16 +98,18 @@ function PublicSuffixList () {
 }
 
 function _findMatchingTLDRule(domainString) {
+	var ruleTypes = ['exception','wildcard','rule'];
+
 	if (typeof domainString !== 'string') return null;
 	var domainParts = domainString.split('.');
 	var checkAgainst = '';	
 	var results = {};
 	do {
 		var domainPart = domainParts.pop();
-		checkAgainst = _.rtrim(domainPart  + '.' + checkAgainst,'.');
+		checkAgainst = rtrim(domainPart  + '.' + checkAgainst,'.');
 		ruleTypes.forEach(function(type) {
 			if (!results[type]) results[type] = [];
-			var matches = _.select(rules[type],function(rule) {	return (checkAgainst === rule ? true : false);	});
+			var matches = rules[type].filter(function(rule) {	return (checkAgainst === rule ? true : false);	})
 			if (matches.length > 0) results[type].push(matches);
 		});
 

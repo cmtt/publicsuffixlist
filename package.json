@@ -2,7 +2,7 @@
 
   "name" : "publicsuffixlist",
 
-  "version" : "0.1.0"
+  "version" : "0.1.1"
 
   , "scripts" : {
       "preinstall" : "node download_list.js"
@@ -18,10 +18,6 @@
       , "email" : "thoemmes+git@gmail.com"
       , "url" : "https://github.com/cmtt/publicsuffixlist"
     } 
-  , "dependencies" :
-    { "underscore" : ">=1.1.7"
-    , "underscore.string" : ">= 1.1.6"
-    }
   , "repository" : { 
       "type" : "git"
       , "url" : "https://github.com/cmtt/publicsuffixlist"

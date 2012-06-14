@@ -1,8 +1,13 @@
-// Introduced for Windows compatibility when removing the module.
+// Removal script, part of the npm removal routine
 
-var fs = require('fs');
-var path = require('path');
+var fs = require('fs'),
+  path = require('path'),
+  tldSourceFiles = ['effective_tld_names.dat','strings-1200utc-13jun12-en.csv'];
 
-var tldFileName = path.join(__dirname ,'effective_tld_names.dat');
-
-if (path.existsSync(tldFileName)) fs.unlinkSync(tldFileName);	
+tldSourceFiles.forEach(function(f) {
+  var tldFileName = path.join(__dirname ,f);
+  if (path.existsSync(tldFileName)) {
+    console.log('Removing',f);
+    fs.unlinkSync(tldFileName);
+  }
+});

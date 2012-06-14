@@ -1,54 +1,97 @@
 PublicSuffixList
 ================
 
-This module makes use of the [Public Suffix List](http://www.publicsuffix.org)
-used in modern browsers like Google Chrome, Mozilla Firefox and Opera for
-validating domain names.
+This module validates domain names and top level domains, making use of the
+[Public Suffix List](http://www.publicsuffix.org) used in modern browsers like
+Google Chrome, Mozilla Firefox and Opera.
+
+In addition, it can be used to validate the upcoming general top level domains
+being introduced in 2013, according to [ICANN](http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en).
 
 ## Installation
 
-The PSL module can be installed via npm or manually.
+The module can be installed via npm or manually by cloning this repository.
 
-A current copy of the Public Suffix List will be downloaded when npm is used. 
+    npm install publicsuffixlist
 
-After a manual installation, the download_list.js script should be started in
-order to download a current copy of the list from publicsuffix.org.
+A current copy of the Public Suffix List will be downloaded automatically
+when npm is used. The installation routine asks if the gTLD list should be
+downloaded. 
+
+After a manual installation, it is necessary to run the download_list.js script
+in order to download these lists.
 
 ## Usage
 
-    var psl = require('publicsuffixlist');
+The module provides the following functions.
 
-    var validDomain = psl.validate('example.io');
-    // validDomain === true
+### lookup (domainString)
 
-    var invalidDomain = psl.validate('example.yz');
-    // invalidDomain === false
+lookup returns an object providing the distinct results for the queried string or
+null in case of an invalid query. 
 
-    var result = psl.parse('www.domain.com');
-    // result === 'domain.com'    
+    var result = psl.lookup('www.domain.com');
 
-    var subdomain = psl.subdomain;
-    // subdomain ===  'www'
+    /* result === { domain: 'domain',
+                  tld: 'com',
+                  subdomain: 'www' } */
 
-    var domain = psl.domain;
-    // domain === 'domain'
+### validateTLD (tld)
 
-    var tld = psl.tld;
-    // tld === 'com'
+Validates the provided top level domain. Returns true or false.
+
+    var validTLD = psl.validateTLD('de'); // true
+    var invalidTLD = psl.validateTLD('ed'); // false
+
+### parse (domainString)
+
+This function returns in case of a valid string the domain name including the TLD,
+otherwise null.
+
+For compatibility reasons, the module provides access to the distinct results in
+addition. However, for running multiple queries asynchronically, the lookup
+function should be used instead.
+
+    var domain = psl.parse('subdomain.domain.de');
+
+    // domain === 'domain.de'
+    // psl.subdomain === 'subdomain'
+    // psl.domain === 'domain'
+    // psl.tld === 'de'
+
+### validate (domainString)
+
+Returns true when the provided domain is valid, otherwise false.
+
+    var validDomain = psl.validate('domain.de'); // true
+    var invalidDomain = psl.validate('domain.yz'); // false
 
 ## Tests
 
 Tests are included in the test/ directory.
 
+## Changes
+
+0.1.3
++ added support for gTLDs
++ added lookup() and validateTLD()
+
+0.1.1, 0.1.2
++ Removed dependency on [http://documentcloud.github.com/underscore/](Underscore.js) 
++ added support for automatic installation on the Windows platform
+
+0.1.0
++ first release
+
 ## TODO
 
 + Improve domain validation
-+ return results as new objects instead of pointers 
 
 Further reading
 ---------------
 * [http://www.publicsuffix.org](publicsuffix.org)
 * [https://wiki.mozilla.org/Public_Suffix_List](Mozilla Wiki: Public Suffix List)
+* [http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en](ICANN: Reveal of gTLDs applied for)
 
 Credits
 -------

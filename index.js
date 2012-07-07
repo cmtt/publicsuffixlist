@@ -87,10 +87,10 @@ function _findMatchingTLDRule (domainString) {
 	});	
 	return (longestResult ? longestResult : Result);
 }
-if (path.existsSync(tldFileName)) ruleLoader(0,tldFileName);
+if (fs.existsSync(tldFileName)) ruleLoader(0,tldFileName);
 else throw new Error(tldFileName + ' not found. Execute \n $ node ' + path.join(__dirname,'download_list.js')  +  '\n');
 
-if (path.existsSync(gtldFileName)) ruleLoader(1,gtldFileName);
+if (fs.existsSync(gtldFileName)) ruleLoader(1,gtldFileName);
 
 function PublicSuffixList () {
 	var self = {

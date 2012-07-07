@@ -90,7 +90,7 @@ function demandSource (key, callback) {
 }
 
 function downloadTld (callback) {
-  path.exists(path.join(__dirname,sources['tld'].file), function(exists) {
+  fs.exists(path.join(__dirname,sources['tld'].file), function(exists) {
     if (exists === false) {
       demandSource('tld', callback);
       return;
@@ -106,7 +106,7 @@ function downloadTld (callback) {
 }
 
 function downloadGeneric (callback) {
-  path.exists(path.join(__dirname,sources['generic'].file), function(exists) {
+  fs.exists(path.join(__dirname,sources['generic'].file), function(exists) {
     if (exists === false) {
       promptYN('Do you want this module to support the generic top level domains (for example .app, .zero)\nwhich will be introduced in 2013?\nMore information at http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en  ', function (err,answer) {
         if (answer === false) {

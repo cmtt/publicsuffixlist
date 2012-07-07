@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 tldSourceFiles.forEach(function(f) {
   var tldFileName = path.join(__dirname ,f);
-  if (path.existsSync(tldFileName)) {
+  if (fs.existsSync(tldFileName)) {
     console.log('Removing',f);
     fs.unlinkSync(tldFileName);
   }

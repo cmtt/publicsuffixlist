@@ -4,6 +4,10 @@ var fs = require('fs')
   , path = require('path')
   , http = require('http');
 
+var fExists = (function () {
+  return fs.exists || path.exists;
+})();
+
 var sources = {
   tld : {
     host : 'mxr.mozilla.org',
@@ -29,13 +33,14 @@ function promptYN (str, callback) {
   },20e3);
 
   process.stdin.on('data', function (txt) {
+    var c = txt.toString().charAt(0)
+      , answer = /(j|y)/i.test(c);
+      
     clearTimeout(timer);
-    var c = txt.toString().charAt(0);
     if (/(j|y|n)/i.test(c) === false) {
-      process.stdin.write('\r'+str.toString()+ ' ');
+      process.stdin.write('\r'+str.toString()+ ' [y/n] ');
       return;
     }
-    var answer = /(j|y)/i.test(c);
     process.stdin.pause();
     process.stdin.removeAllListeners();
     callback(null, answer);
@@ -90,12 +95,12 @@ function demandSource (key, callback) {
 }
 
 function downloadTld (callback) {
-  path.exists(path.join(__dirname,sources['tld'].file), function(exists) {
+  fExists(path.join(__dirname,sources['tld'].file), function(exists) {
     if (exists === false) {
       demandSource('tld', callback);
       return;
     }      
-    promptYN('The Public Suffix List was already downloaded. Do you want to re-download this list?', function (err,answer) {
+    promptYN('The Public Suffix List has been downloaded already. Do you want to download this list again?', function (err,answer) {
       if (answer === false) {
         callback(null);
         return;
@@ -106,9 +111,9 @@ function downloadTld (callback) {
 }
 
 function downloadGeneric (callback) {
-  path.exists(path.join(__dirname,sources['generic'].file), function(exists) {
+  fExists(path.join(__dirname,sources['generic'].file), function(exists) {
     if (exists === false) {
-      promptYN('Do you want this module to support the generic top level domains (for example .app, .zero)\nwhich will be introduced in 2013?\nMore information at http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en  ', function (err,answer) {
+      promptYN('Do you want this module to support the generic top level domains (for example .app, .zero)\nbeing introduced in 2013?\nMore information at http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en  ', function (err,answer) {
         if (answer === false) {
           callback(null);
           return;
@@ -117,7 +122,7 @@ function downloadGeneric (callback) {
       });
       return;
     } 
-    promptYN('The list of generic TLD has been downloaded already. Do you want to re-download this list?', function (err,answer) {
+    promptYN('The list of generic TLD has been downloaded already. Do you want to download this list again?', function (err,answer) {
       if (answer === false) {
         callback(null);
         return;
@@ -135,7 +140,6 @@ downloadTld(function (err) {
   downloadGeneric(function (err) {
     if (err) {
       throw new Error(err);
-      process.exit();
     }
     process.exit();
   });

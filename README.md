@@ -45,7 +45,7 @@ Validates the provided top level domain. Returns true or false.
 
 ### parse (domainString)
 
-This function returns in case of a valid string the domain name including the TLD,
+This function returns the domain name including the TLD in case of a valid string,
 otherwise null.
 
 For compatibility reasons, the module provides access to the distinct results in
@@ -72,8 +72,14 @@ Tests are included in the test/ directory.
 
 ## Changes
 
+0.1.31
+
++ adapting to current Node's API changes in order to remove the warning messages
++ updated tests
++ fixed some typing and syntax errors
+
 0.1.3
-+ added support for gTLDs
++ added support for generic TLDs
 + added lookup() and validateTLD()
 
 0.1.1, 0.1.2
@@ -89,9 +95,9 @@ Tests are included in the test/ directory.
 
 Further reading
 ---------------
-* [http://www.publicsuffix.org](publicsuffix.org)
-* [https://wiki.mozilla.org/Public_Suffix_List](Mozilla Wiki: Public Suffix List)
-* [http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en](ICANN: Reveal of gTLDs applied for)
+* [publicsuffix.org](http://www.publicsuffix.org)
+* [Mozilla Wiki: Public Suffix List](https://wiki.mozilla.org/Public_Suffix_List)
+* [ICANN: Reveal of gTLDs applied for](http://newgtlds.icann.org/en/program-status/application-results/strings-1200utc-13jun12-en)
 
 Credits
 -------

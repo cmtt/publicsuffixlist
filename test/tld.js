@@ -118,27 +118,27 @@ result = psl.lookup('kyoto.jp');
 assert.equal(result,null);
 
 result = psl.lookup('c.kyoto.jp');
-assert.equal(result,null);
+// assert.equal(result,null);
+assert.equal(result.domain,'c');
+assert.equal(result.tld,'kyoto.jp');
 
 result = psl.lookup('b.c.kyoto.jp');
-assert.equal(result.subdomain,null);
-assert.equal(result.domain,'b');
-assert.equal(result.tld,'c.kyoto.jp');
+assert.equal(result.subdomain,'b');
+assert.equal(result.domain,'c');
+assert.equal(result.tld,'kyoto.jp');
 
 result = psl.lookup('pref.kyoto.jp');
-assert.equal(result.subdomain,'pref');
-assert.equal(result.domain,'kyoto');
-assert.equal(result.tld,'jp');
+assert.equal(result.domain,'pref');
+assert.equal(result.tld,'kyoto.jp');
 
 result = psl.lookup('www.pref.kyoto.jp');
-assert.equal(result.subdomain,'www.pref');
-assert.equal(result.domain,'kyoto');
-assert.equal(result.tld,'jp');
+assert.equal(result.subdomain,'www');
+assert.equal(result.domain,'pref');
+assert.equal(result.tld,'kyoto.jp');
 
 result = psl.lookup('city.kyoto.jp');
-assert.equal(result.subdomain,'city');
-assert.equal(result.domain,'kyoto');
-assert.equal(result.tld,'jp');
+assert.equal(result.domain,'city');
+assert.equal(result.tld,'kyoto.jp');
 
 // Punycode domains
 
@@ -213,12 +213,11 @@ invalidTLD = psl.validateTLD('metro.tokyo.jp');
 assert.equal(invalidTLD,false);
 
 // wildcard
-invalidTLD = psl.validateTLD('akita.jp');
+invalidTLD = psl.validateTLD('nic.uk');
 assert.equal(invalidTLD,false);
 
-validTLD = psl.validateTLD('city.akita.jp');
+validTLD = psl.validateTLD('worse-than.tv');
 assert.equal(validTLD,true);
-
 
 // invalid input
 

@@ -1,11 +1,23 @@
 var psl = require('../index.js')
   , assert = require('assert')
+  , path = require('path')
+  , fs = require('fs')
   , domain = null
   , result = null
   , validDomain = null
   , invalidDomain = null
   , validTLD = null
-  , invalidTLD = null;
+  , invalidTLD = null
+  , gtldFileName = path.join(__dirname ,'strings-1200utc-13jun12-en.csv');
+
+var fExistsSync = (function () {
+  return fs.existsSync || path.existsSync;
+})();
+
+if (fExistsSync(gtldFileName) === false) {
+	console.log('Test aborted, as the corresponding list of generic top level domains was not downloaded. Re-run the download_list.js script in ' + __dirname);
+	process.exit();
+}
 
 domain = psl.parse('division.zero');
 assert.equal(domain,'division.zero');

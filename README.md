@@ -73,7 +73,6 @@ Tests are included in the test/ directory.
 ## Changes
 
 0.1.31
-
 + adapting to current Node's API changes in order to remove the warning messages
 + updated tests
 + fixed some typing and syntax errors
@@ -83,7 +82,7 @@ Tests are included in the test/ directory.
 + added lookup() and validateTLD()
 
 0.1.1, 0.1.2
-+ Removed dependency on [http://documentcloud.github.com/underscore/](Underscore.js) 
++ Removed dependency on [Underscore.js](http://documentcloud.github.com/underscore/) 
 + added support for automatic installation on the Windows platform
 
 0.1.0

@@ -1,33 +1,28 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.1.31",
+  "version": "0.2.0",
   "scripts": {
     "preinstall": "node download_list.js",
-    "update": "node download_list.js",    
+    "update": "node download_list.js",
     "preuninstall": "node delete_list.js"
   },
   "main": "./index.js",
-  "description": "A validator for domain names and top level domains, driven by publicsuffixlist.org and ICANN's generic TLDs.",
+  "description": "A validator for domain names and top level domains, driven by TLDs data from Mozilla's publicsuffixlist.org.",
   "homepage": "https://github.com/cmtt/publicsuffixlist",
   "author": {
-    "name": "Matthias Thoemmes",
-    "email": "thoemmes+git@gmail.com",
+    "name": "Matthias Thoemmes <git@gmx.org>",
+    "email": "git@gmx.org",
     "url": "https://github.com/cmtt/publicsuffixlist"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/cmtt/publicsuffixlist.git"
   },
-  "_id": "publicsuffixlist@0.1.31",
+  "_id": "publicsuffixlist@0.2.0",
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "*"
-  },
-  "_engineSupported": true,
-  "_npmVersion": "1.1.21",
-  "_nodeVersion": "v0.6.19",
-  "_defaultsLoaded": true,
-  "_from": "publicsuffixlist"
+  }
 }

@@ -1,5 +1,7 @@
 module.exports = PublicSuffixList;
 
+var path = require('path');
+
 var is = require('./lib/is');
 var waterfall = require('./lib/waterfall');
 var RuleLoader = require('./lib/rule-loader');
@@ -11,6 +13,15 @@ var TYPES = [TYPE_RULE, TYPE_WILDCARD, TYPE_EXCEPTION];
 
 function PublicSuffixList (options) {
   options = is.Object(options) ? options : {};
+
+  // by default load file from the module
+  if (!(
+    options.filename ||
+    options.buffer ||
+    options.lines
+  )) {
+    options.filename = path.join(__dirname, 'effective_tld_names.dat');
+  }
 
   var psl = {
     options : options,

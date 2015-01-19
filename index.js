@@ -14,12 +14,8 @@ var TYPES = [TYPE_RULE, TYPE_WILDCARD, TYPE_EXCEPTION];
 function PublicSuffixList (options) {
   options = is.Object(options) ? options : {};
 
-  // by default load file from the module
-  if (!(
-    options.filename ||
-    options.buffer ||
-    options.lines
-  )) {
+  // load Mozilla's effective_tld_names.dat by default
+  if (!(is.String(options.filename) || is.Buffer(options.buffer) || is.Array(options.lines))) {
     options.filename = path.join(__dirname, 'effective_tld_names.dat');
   }
 

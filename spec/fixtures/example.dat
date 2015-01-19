@@ -1,7 +1,7 @@
 // This is an example rule file which is comparable to Mozilla's "Public suffix
 // list". It contains fictive top level domains, therefore it is solely
 // suitable for testing purposes.
-.
+
 zyx
 domain.zyx
 

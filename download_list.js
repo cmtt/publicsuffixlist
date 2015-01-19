@@ -1,8 +1,8 @@
 // Download script, part of the npm installation routine.
 
-var fs = require('fs')
-  , path = require('path')
-  , https = require('https');
+var fs = require('fs');
+var path = require('path');
+var https = require('https');
 
 var fExists = (function () {
   return fs.exists || path.exists;
@@ -14,7 +14,7 @@ var sources = {
     path : '/list/effective_tld_names.dat?raw=1',
     file : 'effective_tld_names.dat'
   }
-}
+};
 
 function downloadFile (options, callback) {
   var request = https.request({
@@ -29,9 +29,9 @@ function downloadFile (options, callback) {
   });
 
   request.on('failure', function (err) {
-   request.destroy();    
+   request.destroy();
     callback(err);
-  }); 
+  });
 
   request.on('response', function (response) {
     if (response.statusCode === 200) {
@@ -56,14 +56,14 @@ function downloadFile (options, callback) {
 }
 
 function demandSource (key, callback) {
-  console.log('Downloading https://' + sources[key].host + sources[key].path)
+  console.log('Downloading https://' + sources[key].host + sources[key].path);
   downloadFile(sources[key],function (err) {
     callback(err);
   });
 }
 
 function downloadTld (callback) {
-  fExists(path.join(__dirname,sources['tld'].file), function(exists) {
+  fExists(path.join(__dirname,sources.tld.file), function(exists) {
     if (exists === false) {
       demandSource('tld', callback);
       return;
@@ -74,6 +74,6 @@ function downloadTld (callback) {
 downloadTld(function (err) {
   if (err) {
     throw new Error(err);
-    process.exit();
   }
+  process.exit();
 });

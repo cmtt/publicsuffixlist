@@ -7,15 +7,6 @@ describe('PublicSuffixList', function () {
     assert.ok(is.Function(PublicSuffixList));
   });
 
-  it ('cannot initialize without rules', function (done) {
-    var psl = new PublicSuffixList();
-    psl.initialize(function (err) {
-      assert.ok(err);
-      assert.ok(/E_NO_RULES/.test(err));
-      done();
-    });
-  });
-
   it ('initializes with rule file', function (done) {
     var psl = getExample('file');
     psl.initialize(function (err) {

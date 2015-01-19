@@ -7,9 +7,11 @@ Google Chrome, Mozilla Firefox and Opera.
 
 ## Installation
 
-The module can be installed via npm or manually by cloning this repository.
+The module can be installed via npm or by cloning this repository manually.
 
+```js
     npm install publicsuffixlist
+```
 
 A current copy of the Public Suffix List will be downloaded automatically
 when npm is used.
@@ -42,7 +44,8 @@ var psl = new PublicSuffixList(options);
 ```
 options:
 ##### ``filename {string}``
-Supplies a filename as source for the data file. By default it'll be the file loaded while installation.
+Supplies a filename as source for the data file.
+This will be Mozilla's "effective_tld_names.dat" by default.
 
 ##### ``buffer {object}``
 Supplies a buffer as source for the data file.
@@ -101,13 +104,15 @@ Tests are included in the test/ directory.
 
 ## Changes
 
+0.2.1
++ Loading Mozilla's public suffix list by default when nothing else was
+  declared
+
 0.2.0
 + Adding ability to load rules from buffers, files and arrays of rules
 + API change: removing .parse(), asynchronous initialization
 + adding .domain()
 + re-written unit tests
-
-0.1.32
 + changing the publicsuffix list URL
 
 0.1.31
@@ -134,6 +139,8 @@ Further reading
 Credits
 -------
 
+* [Kirill Dmitrenko](https://github.com/dmikis) added loading Mozilla's public
+  suffix list by default (if nothing else was declared)
 * [Morton Swimmer](https://github.com/mswimmer) forked this library, added
   a .domain() method and updated the URL of the list
 * [Simone Carletti](http://www.simonecarletti.com/code/public_suffix_service/)

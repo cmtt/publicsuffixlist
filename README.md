@@ -42,7 +42,7 @@ var psl = new PublicSuffixList(options);
 ```
 options:
 ##### ``filename {string}``
-Supplies a filename as source for the data file.
+Supplies a filename as source for the data file. By default it'll be the file loaded while installation.
 
 ##### ``buffer {object}``
 Supplies a buffer as source for the data file.

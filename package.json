@@ -1,6 +1,6 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "scripts": {
     "preinstall": "node download_list.js",
     "update": "node download_list.js",
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git://github.com/cmtt/publicsuffixlist.git"
   },
-  "_id": "publicsuffixlist@0.2.1",
+  "_id": "publicsuffixlist@0.2.2",
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},

@@ -3,8 +3,9 @@
  */
 
 global.assert = require('assert');
-global.fs = require('fs');
-global.path = require('path');
+
+var fs = require('fs');
+var path = require('path');
 
 var exampleDataFile = _basePath('spec', 'fixtures', 'example.dat');
 var pslDataFile = _basePath('effective_tld_names.dat');

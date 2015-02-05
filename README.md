@@ -10,10 +10,10 @@ Google Chrome, Mozilla Firefox and Opera.
 The module can be installed via npm or by cloning this repository manually.
 
 ```js
-    npm install publicsuffixlist
+npm install publicsuffixlist
 ```
 
-A current copy of the Public Suffix List will be downloaded automatically
+A current copy of Mozilla's Public Suffix List will be downloaded automatically
 when npm is used.
 
 After a manual installation, it is necessary to run the download_list.js script
@@ -36,13 +36,23 @@ mocha spec
 
 ## Usage
 
-### Initialization and options
-
 ```js
 var PublicSuffixList = require('publicsuffixlist');
+
+// Create a new PublicSuffixList instance
 var psl = new PublicSuffixList(options);
+
+psl.initialize(function (err) { // initialize psl asynchronously or
+  // Use the methods described below
+});
+
+psl.initializeSync(); // initialize psl synchronously
+// Use the methods described below
+
 ```
-options:
+
+### Options
+
 ##### ``filename {string}``
 Supplies a filename as source for the data file.
 This will be Mozilla's "effective_tld_names.dat" by default.
@@ -51,12 +61,21 @@ This will be Mozilla's "effective_tld_names.dat" by default.
 Supplies a buffer as source for the data file.
 
 ##### ``lines {string[]}``
-Supplies an array of stringd as source for the data file.
+Supplies an array of strings as source for the data file.
 
-### Methods:
+### Initialization
 
 ##### ``.initialize(callback)``
 Loads all rules from the specified source.
+
+##### ``.initializeSync()``
+Loads all rules synchronously from the specified source.
+
+In order to use this module, it must be initialized synchronously or
+asynchronously with a ruleset.
+By default, the ruleset is loaded from disk.
+
+### Methods
 
 ##### ``.lookup(domainString)``
 lookup() returns an object providing the distinct results for the queried
@@ -100,9 +119,18 @@ var invalidDomain = psl.validate('domain.yz'); // false
 
 ## Tests
 
-Tests are included in the test/ directory.
+Tests are included in the spec/ directory. In order to run these, you will need
+to install the Mocha testing framework and execute the following command:
+
+```bash
+mocha spec
+```
 
 ## Changes
+
+0.2.2
++ Adding an initializeSync() method
++ fixed some typing and syntax errors
 
 0.2.1
 + Loading Mozilla's public suffix list by default when nothing else was

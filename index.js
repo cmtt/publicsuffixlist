@@ -1,8 +1,9 @@
+
 module.exports = PublicSuffixList;
 
-var path = require('path');
-
+var __slice = [].slice;
 var is = require('./lib/is');
+var bind = require('./lib/bind');
 var waterfall = require('./lib/waterfall');
 var RuleLoader = require('./lib/rule-loader');
 
@@ -11,22 +12,27 @@ var TYPE_WILDCARD = 2;
 var TYPE_RULE = 3;
 var TYPES = [TYPE_RULE, TYPE_WILDCARD, TYPE_EXCEPTION];
 
+var ruleLoader = null;
+
 function PublicSuffixList (options) {
   options = is.Object(options) ? options : {};
 
   // load Mozilla's effective_tld_names.dat by default
   if (!(is.String(options.filename) || is.Buffer(options.buffer) || is.Array(options.lines))) {
-    options.filename = path.join(__dirname, 'effective_tld_names.dat');
+    options.filename = __dirname + '/effective_tld_names.dat';
   }
+
+  ruleLoader = new RuleLoader(options);
 
   var psl = {
     options : options,
-    ruleLoader : new RuleLoader(options),
-    initialize : _initialize,
+    initialize : bind(_invoke, null, 'initialize'),
+    initializeSync : bind(_invoke, null, 'initializeSync'),
     lookup : _lookup,
     domain : _domain,
     validate : _validate,
     validateTLD : _validateTLD,
+    ruleLoader : ruleLoader,
     tld : _tld
   };
   return psl;
@@ -34,16 +40,13 @@ function PublicSuffixList (options) {
 
 /**
  * @function
- * @param {function} callback
+ * @param {string} fnId function to call
+ * @returns {*}
  */
 
-function _initialize (callback) {
-  var self = this;
-  waterfall([
-    function (next) {
-      self.ruleLoader.initialize(next);
-    }
-  ], callback);
+function _invoke (fnId) {
+  var args = __slice.apply(arguments).slice(1);
+  return ruleLoader[fnId].apply(ruleLoader, args);
 }
 
 /**
@@ -115,10 +118,10 @@ function _lookup (domainString, ruleOnly, ignoreLeadingDot) {
   if (!ignoreLeadingDot && domainString.charAt(0) === '.')  return null;
 
   domainString = domainString.toLowerCase();
-  var matchingRules = this.ruleLoader.findRules(domainString);
+  var matchingRules = _invoke('findRules', domainString);
   var results = [];
   TYPES.forEach(function (type) {
-    var rules = matchingRules[type];
+    var rules = matchingRules[type] || [];
     rules = rules
     .map(function (rule) {
       return {

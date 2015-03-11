@@ -21,7 +21,7 @@ in the root folder in order to download this list.
 
 ## Running the unit tests
 
-Please download and install the [Mocha](http://mochajs.org) test framework
+Please download and install the [Gulp](http://gulpjs.com) build system
 globally (you might have to have superuser rights):
 
 ```bash
@@ -31,7 +31,18 @@ npm install mocha -g
 Then run the following command:
 
 ```bash
-mocha spec
+gulp mocha
+```
+
+## Building the browser version
+
+In order to build a browser-version, you will need to install Gulp globally as well
+as the development dependencies of this module, too.
+
+Then run the following command:
+
+```bash
+gulp build-client
 ```
 
 ## Usage
@@ -117,27 +128,21 @@ var validDomain = psl.validate('domain.de'); // true
 var invalidDomain = psl.validate('domain.yz'); // false
 ```
 
-## Tests
-
-Tests are included in the spec/ directory. In order to run these, you will need
-to install the Mocha testing framework and execute the following command:
-
-```bash
-mocha spec
-```
-
 ## Changes
 
+0.3.0
++ added a browser-compatible build
+
 0.2.2
-+ Adding an initializeSync() method
++ adding an initializeSync() method
 + fixed some typing and syntax errors
 
 0.2.1
-+ Loading Mozilla's public suffix list by default when nothing else was
++ loading Mozilla's public suffix list by default when nothing else was
   declared
 
 0.2.0
-+ Adding ability to load rules from buffers, files and arrays of rules
++ adding ability to load rules from buffers, files and arrays of rules
 + API change: removing .parse(), asynchronous initialization
 + adding .domain()
 + re-written unit tests

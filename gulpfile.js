@@ -15,7 +15,7 @@ gulp.task('mocha', function () {
   .pipe(mocha());
 });
 
-gulp.task('minify-list', function () {
+gulp.task('compress-list', function () {
   return gulp.src([
     'effective_tld_names.dat'
   ])
@@ -31,7 +31,7 @@ gulp.task('minify-list', function () {
   .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('build-template', ['minify-list'], function () {
+gulp.task('build-template', ['compress-list'], function () {
   var effective_tld_names = fs.readFileSync('./.tmp/effective_tld_names.dat').toString();
   return gulp.src('./browser-template.js')
   .pipe(replace('{{ effective_tld_names.dat }}', effective_tld_names))

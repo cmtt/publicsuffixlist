@@ -1,6 +1,6 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.2",
+  "version": "0.3.0-pre",
   "scripts": {
     "preinstall": "node download_list.js",
     "update": "node download_list.js",
@@ -18,9 +18,18 @@
     "type": "git",
     "url": "git://github.com/cmtt/publicsuffixlist.git"
   },
-  "_id": "publicsuffixlist@0.2.2",
+  "_id": "publicsuffixlist@0.3.0-pre",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-mocha": "^2.0.0",
+    "gulp-preprocess": "^1.2.0",
+    "gulp-replace": "^0.5.3",
+    "gulp-strip-code": "^0.1.2",
+    "gulp-webmake": "0.0.3",
+    "lz-string": "^1.3.6"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"

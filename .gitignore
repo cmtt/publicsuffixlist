@@ -1,2 +1,4 @@
 effective_tld_names.dat
+dist
 node_modules
+.tmp

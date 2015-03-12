@@ -4,7 +4,6 @@ module.exports = PublicSuffixList;
 var __slice = [].slice;
 var is = require('./lib/is');
 var bind = require('./lib/bind');
-var waterfall = require('./lib/waterfall');
 var RuleLoader = require('./lib/rule-loader');
 var each = require('./lib/each');
 var map = require('./lib/map');

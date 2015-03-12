@@ -1,9 +1,7 @@
 ;(function (global) {
-  var Base64 = require('Base64');
+
   var PublicSuffixList = require('./index.js');
   var EFFECTIVE_TLD_NAMES = '{{ effective_tld_names.dat }}';
-
-  global.atob = global.atob || Base64.atob;
 
   // Copyright (c) 2013 Pieroxy <pieroxy@pieroxy.net>
   // This work is free. You can redistribute it and/or modify it
@@ -232,6 +230,44 @@
       }
     }
   };
+  global.atob = global.atob || function (input) {
+    input = String(input);
+    var position = 0,
+        output = [],
+        buffer = 0, bits = 0, n;
+
+    input = input.replace(/\s/g, '');
+    if ((input.length % 4) === 0) { input = input.replace(/=+$/, ''); }
+    if ((input.length % 4) === 1) { throw new Error("InvalidCharacterError"); }
+    if (/[^+/0-9A-Za-z]/.test(input)) { throw new Error("InvalidCharacterError"); }
+
+    while (position < input.length) {
+      n = LZString._keyStr.indexOf(input.charAt(position));
+      buffer = (buffer << 6) | n;
+      bits += 6;
+
+      if (bits === 24) {
+        output.push(String.fromCharCode((buffer >> 16) & 0xFF));
+        output.push(String.fromCharCode((buffer >>  8) & 0xFF));
+        output.push(String.fromCharCode(buffer & 0xFF));
+        bits = 0;
+        buffer = 0;
+      }
+      position += 1;
+    }
+
+    if (bits === 12) {
+      buffer = buffer >> 4;
+      output.push(String.fromCharCode(buffer & 0xFF));
+    } else if (bits === 18) {
+      buffer = buffer >> 2;
+      output.push(String.fromCharCode((buffer >> 8) & 0xFF));
+      output.push(String.fromCharCode(buffer & 0xFF));
+    }
+
+    return output.join('');
+  };
+
 
   var lines = atob(LZString.decompressFromBase64(EFFECTIVE_TLD_NAMES)).split(/\n/g);
   var psl = new PublicSuffixList({ lines : lines });

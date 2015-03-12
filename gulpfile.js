@@ -36,7 +36,7 @@ gulp.task('compress-list', function () {
   .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('build-template', ['compress-list'], function () {
+gulp.task('build-template', ['compress-list'], function (done) {
   var effective_tld_names = fs.readFileSync('./.tmp/effective_tld_names.dat').toString();
   return gulp.src('./browser-template.js')
   .pipe(replace('{{ effective_tld_names.dat }}', effective_tld_names))
@@ -44,7 +44,7 @@ gulp.task('build-template', ['compress-list'], function () {
   .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('preprocess-psl', ['build-template'], function () {
+gulp.task('preprocess-psl', ['build-template'], function (done) {
   return gulp.src([
     'index.js',
     'lib/**/*'
@@ -57,7 +57,7 @@ gulp.task('preprocess-psl', ['build-template'], function () {
   .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('build-client', ['preprocess-psl'], function () {
+gulp.task('build-client', ['preprocess-psl'], function (done) {
   return gulp.src('.tmp/client.js')
   .pipe(webmake())
   .pipe(gulp.dest('dist'));

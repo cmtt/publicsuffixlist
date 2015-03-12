@@ -6,6 +6,9 @@ var is = require('./lib/is');
 var bind = require('./lib/bind');
 var waterfall = require('./lib/waterfall');
 var RuleLoader = require('./lib/rule-loader');
+var each = require('./lib/each');
+var map = require('./lib/map');
+var filter = require('./lib/filter');
 
 var TYPE_EXCEPTION = 1;
 var TYPE_WILDCARD = 2;
@@ -17,16 +20,20 @@ var ruleLoader = null;
 function PublicSuffixList (options) {
   options = is.Object(options) ? options : {};
 
+  // @ifndef BROWSER
+
   // load Mozilla's effective_tld_names.dat by default
   if (!(is.String(options.filename) || is.Buffer(options.buffer) || is.Array(options.lines))) {
     options.filename = __dirname + '/effective_tld_names.dat';
   }
+  // @endif
 
   ruleLoader = new RuleLoader(options);
 
   var psl = {
-    options : options,
+    // @ifndef BROWSER
     initialize : bind(_invoke, null, 'initialize'),
+    // @endif
     initializeSync : bind(_invoke, null, 'initializeSync'),
     lookup : _lookup,
     domain : _domain,
@@ -120,10 +127,9 @@ function _lookup (domainString, ruleOnly, ignoreLeadingDot) {
   domainString = domainString.toLowerCase();
   var matchingRules = _invoke('findRules', domainString);
   var results = [];
-  TYPES.forEach(function (type) {
+  each(TYPES, function (type) {
     var rules = matchingRules[type] || [];
-    rules = rules
-    .map(function (rule) {
+    rules = map(rules, function (rule) {
       return {
         type : type,
         rule : rule,
@@ -152,7 +158,7 @@ function _lookup (domainString, ruleOnly, ignoreLeadingDot) {
     tldIndex = domainPart.lastIndexOf('.');
     domainPart = domainString.substring(0, tldIndex);
   }
-  var remainingParts = domainPart.split(/\./).filter(function(p) { return !!p.length; });
+  var remainingParts = filter(domainPart.split(/\./), function(p) { return !!p.length; });
   if (!remainingParts.length) return null;
 
   var result = {};

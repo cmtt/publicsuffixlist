@@ -8,6 +8,8 @@ var replace = require('gulp-replace');
 var concat = require('gulp-concat');
 var mocha = require('gulp-mocha');
 
+gulp.task('default', ['mocha']);
+
 gulp.task('mocha', function () {
   return gulp.src([
     'spec/*.js'
@@ -15,19 +17,22 @@ gulp.task('mocha', function () {
   .pipe(mocha());
 });
 
+gulp.task('watch-mocha', ['mocha'], function () {
+  return gulp.watch([
+    'spec/*.js',
+    'lib/*.js',
+    'index.js'
+  ], ['mocha']);
+});
+
 gulp.task('minify-list', function () {
   return gulp.src([
     'effective_tld_names.dat'
   ])
   .pipe(stripCode({
-    pattern : /^\/\/(.*)$/gm
+    pattern : /^(\s*\n|\/\/(.*)\n)/gm
   }))
-  .pipe(stripCode({
-    pattern : /^\s*\n/gm
-  }))
-  .pipe(lz({
-    base64 : true
-  }))
+  .pipe(lz({ base64 : true }))
   .pipe(gulp.dest('.tmp'));
 });
 

@@ -140,7 +140,7 @@ function _lookup (domainString, ruleOnly, ignoreLeadingDot) {
   if (ruleOnly) return matchingRule;
   var tldIndex = -1;
   if (matchingRule.type === TYPE_RULE || matchingRule.type === TYPE_WILDCARD) {
-    tldIndex = domainString.indexOf('.' + matchingRule.rule);
+    tldIndex = domainString.lastIndexOf('.' + matchingRule.rule);
   } else if (matchingRule.type === TYPE_EXCEPTION) {
     tldIndex = domainString.lastIndexOf('.');
   }

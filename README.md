@@ -127,6 +127,8 @@ mocha spec
 ```
 
 ## Changes
+0.2.3
++ correcting a rule lookup issue
 
 0.2.2
 + Adding an initializeSync() method

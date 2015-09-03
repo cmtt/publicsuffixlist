@@ -2,8 +2,8 @@ PublicSuffixList
 ================
 
 This module validates domain names and top level domains, making use of the
-[Public Suffix List](http://www.publicsuffix.org) used in modern browsers like
-Google Chrome, Mozilla Firefox and Opera.
+[Public Suffix List](http://www.publicsuffix.org) used internally by modern
+web browsers.
 
 ## Installation
 
@@ -11,6 +11,8 @@ The module can be installed via npm or by cloning this repository manually.
 
 ```js
 npm install publicsuffixlist
+# - or -
+git clone https://github.com/cmtt/publicsuffixlist
 ```
 
 A current copy of Mozilla's Public Suffix List will be downloaded automatically
@@ -31,7 +33,7 @@ npm install mocha -g
 Then run the following command:
 
 ```bash
-mocha spec
+mocha
 ```
 
 ## Usage
@@ -119,14 +121,21 @@ var invalidDomain = psl.validate('domain.yz'); // false
 
 ## Tests
 
-Tests are included in the spec/ directory. In order to run these, you will need
+Tests are included in the test/ directory. In order to run these, you will need
 to install the Mocha testing framework and execute the following command:
 
 ```bash
-mocha spec
+mocha
+# - or -
+gulp mocha
 ```
 
 ## Changes
+
+0.2.4
++ disabling certificate validation temporarily
++ adding gulp tasks "jshint" and "mocha"
+
 0.2.3
 + correcting a rule lookup issue
 
@@ -168,7 +177,8 @@ Further reading
 
 Credits
 -------
-
+* [Kristof Csillag](https://github.com/csillag) disabled certificate validation
+  while installing due to an issue with publicsuffix.org's SSL certificate
 * [Kirill Dmitrenko](https://github.com/dmikis) added loading Mozilla's public
   suffix list by default (if nothing else was declared)
 * [Morton Swimmer](https://github.com/mswimmer) forked this library, added

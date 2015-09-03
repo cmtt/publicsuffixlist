@@ -7,24 +7,16 @@ global.assert = require('assert');
 var fs = require('fs');
 var path = require('path');
 
-var exampleDataFile = _basePath('spec', 'fixtures', 'example.dat');
-var pslDataFile = _basePath('effective_tld_names.dat');
-var exampleDataBuffer = fs.readFileSync(exampleDataFile);
-var PublicSuffixList = require(_basePath('index'));
-
-global.basePath = _basePath;
+global.basePath = path.join.bind(path, __dirname, '..');
 global.getExample = _getExample;
 global.getPublicSuffixList = _getPublicSuffixList;
 
-/**
- * @function
- * @returns {string}
- */
+var exampleDataFile = basePath('test', 'fixtures', 'example.dat');
+var pslDataFile = basePath('effective_tld_names.dat');
+var exampleDataBuffer = fs.readFileSync(exampleDataFile);
+var PublicSuffixList = require(basePath());
 
-function _basePath () {
-  var args = Array.prototype.slice.apply(arguments).map(String);
-  return path.join.apply(path,[__dirname,'..'].concat(args));
-}
+if (!fs.existsSync(pslDataFile)) throw new Error('Data file from publicsuffix.org is missing. Please run\n\n  $ node download_list.js.\n');
 
 /**
  * @function

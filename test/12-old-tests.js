@@ -103,41 +103,24 @@ describe('old tests', function () {
     assert.equal(result.subdomain,null);
     assert.equal(result.domain,'example');
     assert.equal(result.tld,'biz');
-
-    // TLD with only 1 (wildcard) rule.
-    result = psl.lookup('cy');
-    assert.equal(result,null);
-
-    result = psl.lookup('c.cy');
-    assert.equal(result,null);
-
-    result = psl.lookup('b.c.cy');
-    assert.equal(result.subdomain,null);
-    assert.equal(result.domain,'b');
-    assert.equal(result.tld,'c.cy');
-
-    result = psl.lookup('a.b.c.cy');
-    assert.equal(result.subdomain,'a');
-    assert.equal(result.domain,'b');
-    assert.equal(result.tld,'c.cy');
   });
 
   it('TLD with only 1 (wildcard) rule.', function () {
-    result = psl.lookup('cy');
+    result = psl.lookup('er');
     assert.equal(result,null);
 
-    result = psl.lookup('c.cy');
+    result = psl.lookup('c.er');
     assert.equal(result,null);
 
-    result = psl.lookup('b.c.cy');
+    result = psl.lookup('b.c.er');
     assert.equal(result.subdomain,null);
     assert.equal(result.domain,'b');
-    assert.equal(result.tld,'c.cy');
+    assert.equal(result.tld,'c.er');
 
-    result = psl.lookup('a.b.c.cy');
+    result = psl.lookup('a.b.c.er');
     assert.equal(result.subdomain,'a');
     assert.equal(result.domain,'b');
-    assert.equal(result.tld,'c.cy');
+    assert.equal(result.tld,'c.er');
   });
 
   it('More complex TLD and exception rules.', function () {

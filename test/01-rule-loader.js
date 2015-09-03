@@ -1,7 +1,7 @@
 describe('RuleLoader', function () {
   var RuleLoader = require(basePath('lib','rule-loader'));
   var is = require(basePath('lib','is'));
-  var exampleDataFile = basePath('spec', 'fixtures', 'example.dat');
+  var exampleDataFile = basePath('test', 'fixtures', 'example.dat');
   var exampleDataExpectedLines = [ 'zyx', 'domain.zyx', '*.yxz', '!none.yxz', '!null.yxz' ];
 
   it ('can be initialized', function () {

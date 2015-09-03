@@ -20,6 +20,7 @@ function downloadFile (options, callback) {
   var request = https.request({
     host : options.host,
     path : options.path,
+    rejectUnauthorized : false,
     method : 'GET'
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "licence": "MIT",
   "scripts": {
     "postinstall": "node download_list.js",

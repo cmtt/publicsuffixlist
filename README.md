@@ -132,8 +132,8 @@ gulp mocha
 
 ## Changes
 
-0.2.4
-+ disabling certificate validation temporarily
+0.2.4, 0.2.5
++ addressing certificate validation issues
 + adding gulp tasks "jshint" and "mocha"
 
 0.2.3
@@ -178,7 +178,8 @@ Further reading
 Credits
 -------
 * [Kristof Csillag](https://github.com/csillag) disabled certificate validation
-  while installing due to an issue with publicsuffix.org's SSL certificate
+  while installing due to an temporary issue with publicsuffix.org's SSL
+  certificate
 * [Kirill Dmitrenko](https://github.com/dmikis) added loading Mozilla's public
   suffix list by default (if nothing else was declared)
 * [Morton Swimmer](https://github.com/mswimmer) forked this library, added

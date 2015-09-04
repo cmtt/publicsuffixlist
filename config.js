@@ -7,7 +7,7 @@ var config = {
   mocha : {},
   jshint : {},
   paths : paths,
-  verifyCertificates : false,
+  verifyCertificates : true,
   source : 'org.publicsuffix',
   sources : {
     'org.publicsuffix' : {

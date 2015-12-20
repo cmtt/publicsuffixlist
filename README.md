@@ -132,6 +132,9 @@ gulp mocha
 
 ## Changes
 
+0.2.6
++ Updating build system using [gulp-di](https://github.com/cmtt/gulp-di)
+
 0.2.4, 0.2.5
 + addressing certificate validation issues
 + adding gulp tasks "jshint" and "mocha"

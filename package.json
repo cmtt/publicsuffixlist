@@ -1,11 +1,12 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "licence": "MIT",
   "scripts": {
     "postinstall": "node download_list.js",
     "update": "node download_list.js",
-    "preuninstall": "node delete_list.js"
+    "preuninstall": "node delete_list.js",
+    "test" : "gulp mocha"
   },
   "main": "./index.js",
   "description": "A validator for domain names and top level domains, driven by TLDs data from Mozilla's publicsuffixlist.org.",
@@ -20,6 +21,7 @@
     "url": "git://github.com/cmtt/publicsuffixlist.git"
   },
   "dependencies": {
+    "gulp-di": "0.0.1",
     "next-tick": "^0.2.2"
   },
   "devDependencies": {

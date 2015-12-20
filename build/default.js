@@ -1,3 +1,3 @@
-module.exports = function (gulp, config) {
-  return ['jshint', 'mocha'];
+module.exports = function (gulp) {
+  gulp.task('default', ['jshint', 'mocha']);
 };

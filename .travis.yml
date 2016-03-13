@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "stable"
+  - "5"
+  - "5.1"
+  - "4"
+  - "4.2"
+  - "4.1"
+  - "4.0"
+
+env:
+  - ENV="development"
+
+install:
+  - npm install
+
+before_script:
+  - npm install -g gulp
+
+after_success: 'npm run coveralls'
+
+script: gulp

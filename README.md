@@ -1,25 +1,34 @@
 PublicSuffixList
 ================
 
-This module validates domain names and top level domains, making use of the
-[Public Suffix List](http://www.publicsuffix.org) used internally by modern
-web browsers.
+<div>
+  <a href="https://travis-ci.org/cmtt/publicsuffixlist">
+    <img src="https://img.shields.io/travis/cmtt/publicsuffixlist/master.svg?style=flat-square" alt="Build Status">
+  </a>
+  <a href="https://www.npmjs.org/package/publicsuffixlist">
+    <img src="https://img.shields.io/npm/v/publicsuffixlist.svg?style=flat-square" alt="npm version">
+  </a>
+  <a href="http://spdx.org/licenses/MIT">
+    <img src="https://img.shields.io/npm/l/publicsuffixlist.svg?style=flat-square" alt="npm licence">
+  </a>
+  <a href="https://coveralls.io/github/cmtt/publicsuffixlist">
+    <img src="https://img.shields.io/coveralls/cmtt/publicsuffixlist/master.svg?style=flat-square" alt="Code coverage">
+  </a>
+</div>
+
+A JavaScript domain name parser for the validation of domain names and top level
+domains, making use of the [Public Suffix List](http://www.publicsuffix.org)
+used internally by modernweb browsers.
 
 ## Installation
 
-The module can be installed via npm or by cloning this repository manually.
+The module can be installed via npm:
 
 ```js
-npm install publicsuffixlist
-# - or -
-git clone https://github.com/cmtt/publicsuffixlist
+npm install publicsuffixlist --save
 ```
 
-A current copy of Mozilla's Public Suffix List will be downloaded automatically
-when npm is used.
-
-After a manual installation, it is necessary to run the download_list.js script
-in the root folder in order to download this list.
+A current copy of Mozilla's Public Suffix List will be downloaded automatically.
 
 ## Running the unit tests
 
@@ -119,6 +128,14 @@ var validDomain = psl.validate('domain.de'); // true
 var invalidDomain = psl.validate('domain.yz'); // false
 ```
 
+## Manual installation
+
+For development purposes, you can also clone this repository. Then, you'll
+need to install all dependencies via ```npm install```.
+
+After a manual installation, it is necessary to run the download_list.js script
+in the root folder in order to download a current version of the list.
+
 ## Tests
 
 Tests are included in the test/ directory. In order to run these, you will need
@@ -131,6 +148,9 @@ gulp mocha
 ```
 
 ## Changes
+
+0.2.7
++ Maintenance release, updating dependencies, setting up Travis/Coveralls
 
 0.2.6
 + Updating build system using [gulp-di](https://github.com/cmtt/gulp-di)

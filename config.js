@@ -1,12 +1,6 @@
-var paths = {
-  mocha : ['test/**/*.js'],
-  jshint : ['*.js', 'lib/**/*.js', 'build/**/*.js', 'test/**/*.js']
-};
-
 var config = {
   mocha : {},
   jshint : {},
-  paths : paths,
   verifyCertificates : true,
   source : 'org.publicsuffix',
   sources : {

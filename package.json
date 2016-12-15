@@ -1,13 +1,13 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "A JavaScript domain name parser for the validation of domain names and top level domains, driven by TLDs data from Mozilla's publicsuffixlist.org.",
   "main": "index.js",
   "scripts": {
     "postinstall": "node download_list.js",
     "update": "node download_list.js",
     "preuninstall": "node delete_list.js",
-    "test": "gulp mocha",
+    "test": "mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "author": {
@@ -33,16 +33,17 @@
   "licence": "MIT",
   "homepage": "https://github.com/cmtt/publicsuffixlist",
   "dependencies": {
-    "next-tick": "^0.2.2",
-    "require-dir": "^0.3.0"
+    "next-tick": "^1.0.0",
+    "require-dir": "^0.3.1"
   },
   "devDependencies": {
-    "coveralls": "^2.11.8",
+    "coveralls": "^2.11.15",
     "gulp": "^3.9.1",
-    "gulp-di": "0.0.31",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-jshint": "^2.0.0",
-    "gulp-mocha": "^2.2.0",
-    "mocha": "^2.4.5"
+    "gulp-di": "^0.0.4",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^3.0.1",
+    "jshint": "^2.9.4",
+    "mocha": "^3.2.0"
   }
 }

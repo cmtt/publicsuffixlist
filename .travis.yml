@@ -12,7 +12,7 @@ env:
   - ENV="development"
 
 install:
-  - npm install
+  - npm install --dev
 
 before_script:
   - npm install -g gulp

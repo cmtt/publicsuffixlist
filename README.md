@@ -18,22 +18,28 @@ PublicSuffixList
 
 A JavaScript domain name parser for the validation of domain names and top level
 domains, making use of the [Public Suffix List](http://www.publicsuffix.org)
-used internally by modernweb browsers.
+used internally by modern web browsers.
 
 ## Installation
 
-The module can be installed via npm:
+The ``publicsuffixlist`` module can be installed via npm:
 
 ```js
-npm install publicsuffixlist --save
+npm install publicsuffixlist -S
 ```
 
 A current copy of Mozilla's Public Suffix List will be downloaded automatically.
 
+## Updating the list
+
+In order to obtin a fresh copy of the current list, run ``npm run update`` in
+the installation folder, usually ``node_modules/publicsuffixlist`` (relative to
+the project directory).
+
 ## Running the unit tests
 
 Please download and install the [Mocha](http://mochajs.org) test framework
-globally (you might have to have superuser rights):
+globally (you might need to have superuser rights):
 
 ```bash
 npm install mocha -g
@@ -133,6 +139,9 @@ var invalidDomain = psl.validate('domain.yz'); // false
 For development purposes, you can also clone this repository. Then, you'll
 need to install all dependencies via ```npm install```.
 
+When installing in production (```npm install --only=production```), additional
+dependencies required for running unit tests won't be installed.
+
 After a manual installation, it is necessary to run the download_list.js script
 in the root folder in order to download a current version of the list.
 
@@ -147,7 +156,11 @@ mocha
 gulp mocha
 ```
 
+
 ## Changes
+
+0.2.8
++ Maintenance release, reducing amount of dependencies in production
 
 0.2.7
 + Maintenance release, updating dependencies, setting up Travis/Coveralls

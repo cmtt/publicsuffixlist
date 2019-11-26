@@ -84,7 +84,7 @@ describe('old tests', function () {
 
   it('leading dot', function () {
     result = psl.lookup('.com');
-    assert.equal(null);
+    assert.equal(result, null);
 
     result = psl.lookup('.example.com');
     assert.equal(result,null);

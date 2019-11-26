@@ -135,7 +135,8 @@ function _lookup (domainString, ruleOnly, ignoreLeadingDot) {
 
   if (!results.length) return null;
 
-  results.sort(function (a, b) { return a.length < b.length; });
+  results.sort(function (a, b) { return b.length - a.length; });
+
   var matchingRule = results[0];
   if (ruleOnly) return matchingRule;
   var tldIndex = -1;

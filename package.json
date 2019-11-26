@@ -1,6 +1,6 @@
 {
   "name": "publicsuffixlist",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "A JavaScript domain name parser for the validation of domain names and top level domains, driven by TLDs data from Mozilla's publicsuffixlist.org.",
   "main": "index.js",
   "scripts": {
@@ -34,16 +34,16 @@
   "homepage": "https://github.com/cmtt/publicsuffixlist",
   "dependencies": {
     "next-tick": "^1.0.0",
-    "require-dir": "^0.3.1"
+    "require-dir": "^1.2.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.15",
-    "gulp": "^3.9.1",
+    "coveralls": "^3.0.8",
+    "gulp": "^4.0.2",
     "gulp-di": "^0.0.4",
-    "gulp-istanbul": "^1.1.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-mocha": "^3.0.1",
-    "jshint": "^2.9.4",
-    "mocha": "^3.2.0"
+    "gulp-istanbul": "^1.1.3",
+    "gulp-jshint": "^2.1.0",
+    "gulp-mocha": "^7.0.2",
+    "jshint": "^2.10.3",
+    "mocha": "^6.2.2"
   }
 }

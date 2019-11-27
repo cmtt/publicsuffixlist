@@ -6,16 +6,15 @@ node_js:
   - "11"
   - "10"
   - "9"
-  - "5"
-  - "5.1"
+
 env:
   - ENV="development"
 
-install:
-  - npm install --dev
-
 before_script:
   - npm install -g gulp
+
+install:
+  - npm install
 
 after_success: 'npm run coveralls'
 

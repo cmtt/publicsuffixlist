@@ -5,9 +5,9 @@ module.exports = function(gulp, paths, config, mocha, istanbul){
       .pipe(istanbul.hookRequire());
   });
 
-  gulp.task('mocha', ['pre-test'],function () {
+  gulp.task('mocha', gulp.series('pre-test', function () {
     return gulp.src(paths.mocha)
     .pipe(mocha(config.mocha))
     .pipe(istanbul.writeReports());
-  });
+  }));
 };
